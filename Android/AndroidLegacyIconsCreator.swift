@@ -8,8 +8,6 @@
 struct AndroidLegacyIconsCreator {
 	let background: IconBackground
 	let foreground: IconForeground 
-
-	private let svg2png = "Library/svg2png"
 	
 	private var squircleAppIconFileCreator: FileCreator {
 		FileCreator(
@@ -50,11 +48,11 @@ struct AndroidLegacyIconsCreator {
 	}
 
 	func createAllIconFiles() {
-		if (!squircleAppIconFileCreator.create()) { print("squircleAppIconFileCreator failed") }
-		if (!roundAppIconFileCreator.create()) { print("roundAppIconFileCreator failed") }
-		if (!svg2PNGConfigFileCreator.create()) { print("svg2PNGConfigFileCreator failed") }
+		squircleAppIconFileCreator.create()
+		roundAppIconFileCreator.create()
+		svg2PNGConfigFileCreator.create()
 
-		shell("\(svg2png) -f \(squircleAppIconFileCreator.filePath) -c \(svg2PNGConfigFileCreator.filePath)")
-		shell("\(svg2png) -f \(roundAppIconFileCreator.filePath) -c \(svg2PNGConfigFileCreator.filePath)")
+		shell("\(MainTraits.shared.svg2PNG) -f \(squircleAppIconFileCreator.filePath) -c \(svg2PNGConfigFileCreator.filePath)")
+		shell("\(MainTraits.shared.svg2PNG) -f \(roundAppIconFileCreator.filePath) -c \(svg2PNGConfigFileCreator.filePath)")
 	}
 }

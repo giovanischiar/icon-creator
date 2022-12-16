@@ -12,9 +12,9 @@ class ColorsResParser: NSObject, XMLParserDelegate {
     var xmlColorsDict: [String: String] = [:]
     private var currentKey = ""
     
-    func parseXMLValues(path: String) async throws -> Theme {
+    func parseXMLValues() async throws -> Theme {
         return try await withCheckedThrowingContinuation({
-                (continuation: CheckedContinuation<Theme, Error>) in self.parseXMLValues(path: path) {
+                (continuation: CheckedContinuation<Theme, Error>) in self.parseXMLValues(path: MainTraits.shared.iconPaletteFile) {
                     continuation.resume(with: $0)
                 }
             }

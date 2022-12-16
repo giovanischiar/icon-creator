@@ -7,9 +7,5 @@
 
 enum Platform {
 	case android
-	case ios
-}
-
-extension String {
-	var platform: Platform { self == "ios" ? .ios : .android }
+	case iOS
 }

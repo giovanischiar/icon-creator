@@ -10,8 +10,8 @@ struct ThemeFetcher {
     
     func fetch() async -> Theme {
         switch(platform) {
-            case .android, .ios: 
-                do { return try! await ColorsResParser().parseXMLValues(path: MainTraits.shared.iconPaletteFile) }
+            case .android: return try! await ColorsResParser().parseXMLValues()
+            case .iOS: return ColorsAssetParser().parseJSONValues()
         }
     }
 }

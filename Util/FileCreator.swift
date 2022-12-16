@@ -13,11 +13,11 @@ struct FileCreator {
 
 	var filePath: String { "\(directory)/\(name).\(ext)" }
 
-	func create() -> Bool {
-    	return FileManager.default.createFile (
+	func create() {
+    	FileManager.default.createFile (
    			atPath: filePath, 
     		contents: Data(content.utf8), 
     			attributes: nil
-    	)
+    	) ? print("\(filePath) created successfully") : print("\(filePath) failed")
 	}
 }

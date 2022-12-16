@@ -22,14 +22,14 @@ struct IconCreator {
 
     private func create(platform: Platform) async {
         Traits.shared.theme = await ThemeFetcher(platform: platform).fetch()
+        let background = IconBackground()
+        let foreground = IconForeground()
+        let androidIconsCreator = AndroidIconsCreator(background: background, foreground: foreground)
+        var iosIconsCreator = iOSIconsCreator(background: background, foreground: foreground)
         shell("mkdir -p \(MainTraits.shared.outputFolder)")
-
         switch(platform) {
-            case .android, .ios: 
-                AndroidIconsCreator(
-                    background: IconBackground(),
-                    foreground: IconForeground()
-                ).createAllIcons()
+            case .android: androidIconsCreator.createAllIcons()
+            case .iOS: iosIconsCreator.createAllIcons()
         }
     }
 }

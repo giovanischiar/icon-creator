@@ -21,3 +21,19 @@ extension String {
         (String(self.split(separator: "-")[1])).androidSize
     }
 }
+
+extension String {
+    var platform: Platform { self == "ios" ? .iOS : .android }
+}
+
+extension String {
+    var colorNameInside: String {
+        return String(self.split(separator: ".")[0])
+    }
+}
+
+extension [String:String] {
+    static func +(lhs: [String:String], rhs: [String: String]) -> [String: String] {
+        return lhs.merging(rhs) { (current, _) in current }
+    }
+}

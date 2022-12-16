@@ -28,7 +28,7 @@ struct AndroidIconFilesCreator {
 	}
 
 	func create() {
-		if (!backgroundFileCreator.create()) { print("backgroundFileCreator failed") }
-		if (!foregroundFileCreator.create()) { print("foregroundFileCreator failed") }
+		backgroundFileCreator.create()
+		foregroundFileCreator.create()
 	}
 }

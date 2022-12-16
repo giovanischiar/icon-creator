@@ -12,10 +12,19 @@ struct SVG2PNGJSON: Codable, CustomStringConvertible {
 extension SVG2PNGJSON {
     var description: String {
         do {
-            let svg2PNGJSONData = try JSONEncoder().encode(self)
-            return String(data: svg2PNGJSONData, encoding: .utf8) ?? ""
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = .prettyPrinted
+            let svg2PNGJSONData = try jsonEncoder.encode(self)
+            return String(data: svg2PNGJSONData, encoding: .utf8) ?? "{}"
         } catch let err {
-            return "\(err)"
+            print("\(err)")
+            return "{}"
         }
+    }
+}
+
+extension SVG2PNGJSON {
+    var nameSuffixes: [String] {
+        return self.files.map { $0.nameSuffix }
     }
 }

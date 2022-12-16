@@ -6,6 +6,13 @@
 //
 
 struct SVG2PNGConfigGenerator {
+
+    func iOSSVG2JSONConfig(iosAppIconSetContentsJSON: iOSAppIconSetContentsJSON) -> SVG2PNGJSON {
+        return iosAppIconSetContentsJSON.convertToSVG2PNGJSON(
+            directory: MainTraits.shared.iosIconsFolder
+        )
+    }
+
     var androidSVG2JSONConfig: SVG2PNGJSON {
         let mipMapFolders = findIconFolders(folderName: "mipmap")
         let files = mipMapFolders.map {
