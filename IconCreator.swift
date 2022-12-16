@@ -9,7 +9,7 @@ struct IconCreator {
     var args: [String]
 
     func run() async {
-        if (args.count < 1) {
+        if (args.count < 2) {
             print("Needs an argument: \'android\' or \'ios\'")
             return
         } else if (!["android", "ios"].contains(args[1])) {
