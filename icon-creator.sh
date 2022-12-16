@@ -4,9 +4,9 @@ cd $parent_path
 mkdir -p build
 echo "$(                          \
   cat Android/*.swift             \
-      Icon/*.swift                \
-      Icon/*/*.swift              \
-      Icon/*/*/*.swift            \
+      $2/*.swift                \
+      $2/*/*.swift              \
+      $2/*/*/*.swift            \
       Library/VectorUI/*.swift    \
       SVG2PNGJSONConfig/*.swift   \
       Util/*.swift                \
