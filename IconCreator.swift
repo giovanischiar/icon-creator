@@ -9,8 +9,10 @@ struct IconCreator {
     var args: [String]
 
     func run() async {
-        if (args.count < 2) {
-            print("Needs an argument: \'android\' or \'ios\'")
+        if (args.count < 3) {
+            print("usage:")
+            print("\(CommandLine.arguments[0]) android /path/to/project/directory/from/library/root/folder")
+            print("\(CommandLine.arguments[0]) ios /path/to/app/directory/from/library/root/folder")
             return
         } else if (!["android", "ios"].contains(args[1])) {
             print("Arguments accepted: \'android\' or \'ios\'")

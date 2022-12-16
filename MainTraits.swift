@@ -6,7 +6,9 @@
 //
 
 struct MainTraits {
-    let resDirectory             = "../../app/src/main/res"
+    let appDirectory             = "../\(CommandLine.arguments[2])"
+
+    var resDirectory             : String { "\(appDirectory)/app/src/main/res" }
     let outputFolder             = "output"
     let androidIconPaletteName   = "iconpalette"
     let androidIconFormatName    = "android-icon-format"
@@ -21,7 +23,6 @@ struct MainTraits {
 
     var svg2PNG                  = "Library/svg2png"
 
-    let iosAppName               = "RuleOfThree"
     let iosIconPaletteName       = "AppIconPalette.xcassets"
     let iosIconAssetsName        = "Assets.xcassets"
     let iosIconFormatName        = "ios-icon-format"
@@ -33,9 +34,8 @@ struct MainTraits {
         return !txtFilePaths.isEmpty ? String(txtFilePaths[0].split(separator: ".")[0]) : "AppIcon"
     }()
 
-    var iosAppDirectory          : String { "../../\(iosAppName)" }
-    var iosIconPaletteFolder     : String { "\(iosAppDirectory)/\(iosIconPaletteName)" }
-    var iosAssetsFolder          : String { "\(iosAppDirectory)/\(iosIconAssetsName)" }
+    var iosIconPaletteFolder     : String { "\(appDirectory)/\(iosIconPaletteName)" }
+    var iosAssetsFolder          : String { "\(appDirectory)/\(iosIconAssetsName)" }
     var iosIconsFolder           : String { mutating get { "\(iosAssetsFolder)/\(iosIconName).appiconset" } }
 
     private init() {}
