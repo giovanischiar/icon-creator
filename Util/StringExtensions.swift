@@ -37,3 +37,11 @@ extension [String:String] {
         return lhs.merging(rhs) { (current, _) in current }
     }
 }
+
+extension String {
+    static prefix func -(str: String) -> String {
+        let colorValue = Traits.shared.theme[str] ?? ""
+        if (colorValue == "") { print("⚠️ Key \(str) doesn't exist") }
+        return colorValue
+    }
+}

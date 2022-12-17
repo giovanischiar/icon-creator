@@ -8,7 +8,7 @@
 struct ThemeFetcher {
     var platform: Platform = .android
     
-    func fetch() async -> Theme {
+    func fetch() async -> [String: String] {
         switch(platform) {
             case .android: return try! await ColorsResParser().parseXMLValues()
             case .iOS: return ColorsAssetParser().parseJSONValues()

@@ -8,20 +8,20 @@
 import Foundation
 
 class ColorsResParser: NSObject, XMLParserDelegate {
-    var dictReady: (Result<Theme, Error>) -> Void = { _ in }
+    var dictReady: (Result<[String: String], Error>) -> Void = { _ in }
     var xmlColorsDict: [String: String] = [:]
     private var currentKey = ""
     
-    func parseXMLValues() async throws -> Theme {
+    func parseXMLValues() async throws -> [String: String] {
         return try await withCheckedThrowingContinuation({
-                (continuation: CheckedContinuation<Theme, Error>) in self.parseXMLValues(path: MainTraits.shared.iconPaletteFile) {
+                (continuation: CheckedContinuation<[String: String], Error>) in self.parseXMLValues(path: MainTraits.shared.iconPaletteFile) {
                     continuation.resume(with: $0)
                 }
             }
         )
     }
     
-    private func parseXMLValues(path: String, dictReady: @escaping (Result<Theme, Error>) -> Void) {
+    private func parseXMLValues(path: String, dictReady: @escaping (Result<[String: String], Error>) -> Void) {
         self.dictReady = dictReady
         guard let xmlParser = XMLParser(contentsOf: URL(fileURLWithPath: path)) else { return }
         xmlParser.delegate = self
@@ -43,6 +43,6 @@ class ColorsResParser: NSObject, XMLParserDelegate {
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
-        dictReady(.success(Theme(xmlColorsDict)))
+        dictReady(.success(xmlColorsDict))
     }
 }
