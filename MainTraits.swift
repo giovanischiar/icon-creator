@@ -7,6 +7,7 @@
 
 struct MainTraits {
     let appDirectory             = "../\(CommandLine.arguments[2])"
+    var platform                 : Platform { CommandLine.arguments[1].platform }
 
     var resDirectory             : String { "\(appDirectory)/app/src/main/res" }
     let outputFolder             = "output"

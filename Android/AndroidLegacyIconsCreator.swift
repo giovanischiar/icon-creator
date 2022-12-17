@@ -12,9 +12,8 @@ struct AndroidLegacyIconsCreator {
 	private var squircleAppIconFileCreator: FileCreator {
 		FileCreator(
 			content: AppIcon(
-					background: background, 
+					background: background.squircle(), 
 					foreground: foreground, 
-					backgroundType: .squircle,
 					padding: 10.0
 				).svg, 
 			directory: MainTraits.shared.outputFolder,
@@ -27,9 +26,8 @@ struct AndroidLegacyIconsCreator {
 		FileCreator(
 			content: 
 				AppIcon(
-					background: background, 
+					background: background.circle(), 
 					foreground: foreground, 
-					backgroundType: .circle,
 					padding: 10.0
 				).svg, 
 			directory: MainTraits.shared.outputFolder,

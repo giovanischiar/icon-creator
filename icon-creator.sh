@@ -4,9 +4,9 @@ cd $parent_path
 mkdir -p build
 echo "$(                          \
   cat Android/*.swift             \
-      $3/*.swift                \
-      $3/*/*.swift              \
-      $3/*/*/*.swift            \
+      $3/*.swift                  \
+      $3/*/*.swift                \
+      $3/*/*/*.swift              \
       Library/VectorUI/*.swift    \
       SVG2PNGJSONConfig/*.swift   \
       Util/*.swift                \
@@ -14,6 +14,7 @@ echo "$(                          \
       IconCreator.swift           \
       iOS/*.swift                 \
       iOS/*/*.swift               \
+      AppIcon.swift               \
       Main.swift                  \
 })" > build/IconCreator.swift
 
