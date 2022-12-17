@@ -6,19 +6,19 @@
 //
 
 struct AndroidIconsCreator {
-    let background: IconBackground
+    let iconBackground: IconBackground
     let foreground: IconForeground
 
     private var iconFilesCreator: AndroidIconFilesCreator {
         AndroidIconFilesCreator(
-            background: background,
+            background: iconBackground.background,
             foreground: foreground
         )
     }
 
     private var legacyIconsCreator: AndroidLegacyIconsCreator {
         AndroidLegacyIconsCreator(
-            background: background,
+            background: iconBackground,
             foreground: foreground
         )
     }

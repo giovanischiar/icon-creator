@@ -6,12 +6,12 @@
 //
 
 struct AndroidIconFilesCreator {
-	let iconBackground: IconBackground
+	let background: Background
 	let foreground: IconForeground
 
 	private var backgroundFileCreator: FileCreator {
 		FileCreator(
-			content: iconBackground.background.vectordrawable, 
+			content: background.vectordrawable, 
 			directory: MainTraits.shared.drawableDirectory,
 			name: "\(MainTraits.shared.androidIconName)_background",
 			ext: "xml"
