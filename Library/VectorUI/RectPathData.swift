@@ -7,10 +7,14 @@
 
 struct RectPathData: PathDatable {
     var commands: [PathDataCommand]
+    var x: Double
+    var y: Double
     var width: Double
     var height: Double
-    
+
     init (x: Double = 0, y: Double = 0, width: Double, height: Double, rx: Double = 0) {
+        self.x = x
+        self.y = y
         self.width = width
         self.height = height
         let archNortheast = rx != 0 ? " a \(rx) \(rx) 0 0 1 \(rx) \(rx)" : ""
@@ -28,6 +32,10 @@ struct RectPathData: PathDatable {
         width *= factor
         height *= factor
         commands.move(x: save.0, y: save.1)
+    }
+    
+    func radius(_ value: Double) -> RectPathData {
+        return RectPathData(x: x, y: y, width: width, height: height, rx: value)
     }
 }
 

@@ -9,3 +9,4 @@ protocol Moved {
     associatedtype T
     func moved(x: Double, y : Double) -> T
 }
+
