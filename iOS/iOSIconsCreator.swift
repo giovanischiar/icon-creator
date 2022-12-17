@@ -6,7 +6,7 @@
 //
 
 struct iOSIconsCreator {
-    let background: IconBackground
+    let background: Background
     let foreground: IconForeground
 
     init(iconBackground: IconBackground, foreground: IconForeground) {
