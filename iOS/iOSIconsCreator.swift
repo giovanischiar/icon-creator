@@ -9,8 +9,8 @@ struct iOSIconsCreator {
     let background: IconBackground
     let foreground: IconForeground
 
-    init(background: IconBackground, foreground: IconForeground) {
-        self.background = background
+    init(iconBackground: IconBackground, foreground: IconForeground) {
+        self.background = iconBackground.background
         self.foreground = foreground
     }
 
