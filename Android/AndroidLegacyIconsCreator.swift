@@ -13,7 +13,7 @@ struct AndroidLegacyIconsCreator {
 		FileCreator(
 			content: AppIcon(
 					background: background.squircle(), 
-					foreground: foreground, 
+					foreground: foreground.foreground, 
 					padding: 10.0
 				).svg, 
 			directory: MainTraits.shared.outputFolder,
@@ -27,7 +27,7 @@ struct AndroidLegacyIconsCreator {
 			content: 
 				AppIcon(
 					background: background.circle(), 
-					foreground: foreground, 
+					foreground: foreground.foreground, 
 					padding: 10.0
 				).svg, 
 			directory: MainTraits.shared.outputFolder,
