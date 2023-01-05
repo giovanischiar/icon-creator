@@ -31,8 +31,37 @@ extension IconBackground {
     }
 }
 
+extension IconForeground {
+    var contentBody: [any Tag] {
+        return foreground.contentBody
+    }
+    
+    func scaled(factor: Double) -> Foreground {
+        var foreground = self
+        foreground.scaleFactor = factor
+        return foreground.foreground.scaled(factor: factor)
+    }
+    
+    func center() -> Foreground {
+        return foreground.center()
+    }
+    
+    func parentDimension(_ value: Dimension) -> Foreground {
+        return foreground.parentDimension(value)
+    }
+}
+
 extension Background {
     var vectordrawable: String {
         return TagDecoder().prettyDecode(self, xmlType: .vectordrawable)
     }
 }
+
+extension Foreground {
+    var vectordrawable: String {
+        return TagDecoder().prettyDecode(self, xmlType: .vectordrawable)
+    }
+}
+
+
+

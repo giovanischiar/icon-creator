@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol PathDatable: CustomStringConvertible, Scalable, Movable, Centralizable {
+protocol PathDatable: CustomStringConvertible, Scalable, Movable {
     var commands: [PathDataCommand] { get set }
     var width: Double { get }
     var height: Double { get }
@@ -48,11 +48,9 @@ extension PathDatable {
         commands.move(x: x, y: y)
     }
     
-    mutating func centralize() {
-        let dimensions = Traits.shared.dimensions
-        let size = dimensions.iconSize
-        let x = size/2.0 - width/2.0
-        let y = size/2.0 - height/2.0
+    mutating func centralize(parentDimension: Dimension) {
+        let x = parentDimension.width/2.0 - width/2.0
+        let y = parentDimension.height/2.0 - height/2.0
         commands.move(x: x, y: y)
     }
 }

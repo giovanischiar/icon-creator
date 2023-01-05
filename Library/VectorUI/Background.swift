@@ -46,7 +46,7 @@ extension Background {
     func fill(color: String) -> Background {
         var background = self
         let path = background.path
-        background.path = path.fill(with: color)
+        background.path = path.fill(color: color)
         return background
     }
     

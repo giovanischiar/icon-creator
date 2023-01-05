@@ -7,5 +7,6 @@
 
 protocol Centralized {
     associatedtype T
-    func centralized() -> T
+    func center() -> T
+    func parentDimension(_ value: Dimension) -> T
 }

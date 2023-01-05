@@ -7,11 +7,11 @@
 
 struct iOSIconsCreator {
     let background: Background
-    let foreground: IconForeground
+    let foreground: Foreground
 
-    init(iconBackground: IconBackground, foreground: IconForeground) {
+    init(iconBackground: IconBackground, iconForeground: IconForeground) {
         self.background = iconBackground.background
-        self.foreground = foreground
+        self.foreground = iconForeground.foreground
     }
 
     private lazy var appIconSetContentsJSON: iOSAppIconSetContentsJSON = {

@@ -7,7 +7,7 @@
 
 struct AppIcon: Tag {
     let background: Background
-    let foreground: IconForeground
+    let foreground: Foreground
     var padding = 0.0
     let dimensions = Traits.shared.dimensions
     var size: Double { dimensions.iconSize }
@@ -15,7 +15,7 @@ struct AppIcon: Tag {
     var body: [any Tag] {
         Vector(viewBox: [-padding, -padding, size + (padding * 2), size + (padding * 2)]) {
             background.contentBody
-            foreground.center()
+            foreground.center().contentBody
         }
     }
 }

@@ -6,5 +6,5 @@
 //
 
 protocol Centralizable {
-    mutating func centralize()
+    mutating func centralize(parentDimension: Dimension)
 }

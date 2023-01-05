@@ -7,6 +7,10 @@
 
 @resultBuilder
 struct TagBuilder {
+    static func buildBlock() -> [any Tag] {
+        return [] as [any Tag]
+    }
+    
     static func buildBlock(_ tag: any Tag) -> [any Tag] {
         return [tag]
     }

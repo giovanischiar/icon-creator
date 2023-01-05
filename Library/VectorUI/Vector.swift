@@ -6,12 +6,14 @@
 //
 
 struct Vector: Tag {
-    var viewBox: [Double]? = nil
+    var viewBox: [Double]
     var content: [any Tag]
     
-    init(viewBox: [Double]? = nil, @TagBuilder content: () -> [any Tag]) {
+    init(viewBox: [Double], @TagBuilder content: () -> [any Tag]) {
         self.viewBox = viewBox
         self.content = content()
+            .parentCoordinates((0, 0))
+            .parentDimension(Dimension(width: viewBox[2], height: viewBox[3]))
     }
     
     var body: [any Tag] { content }

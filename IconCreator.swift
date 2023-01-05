@@ -25,9 +25,9 @@ struct IconCreator {
     private func create(platform: Platform) async {
         Traits.shared.theme = await ThemeFetcher(platform: platform).fetch()
         let iconBackground = IconBackground()
-        let foreground = IconForeground()
-        let androidIconsCreator = AndroidIconsCreator(iconBackground: iconBackground, foreground: foreground)
-        var iosIconsCreator = iOSIconsCreator(iconBackground: iconBackground, foreground: foreground)
+        let iconForeground = IconForeground()
+        let androidIconsCreator = AndroidIconsCreator(iconBackground: iconBackground, iconForeground: iconForeground)
+        var iosIconsCreator = iOSIconsCreator(iconBackground: iconBackground, iconForeground: iconForeground)
         shell("mkdir -p \(MainTraits.shared.outputFolder)")
         switch(platform) {
             case .android: androidIconsCreator.createAllIcons()

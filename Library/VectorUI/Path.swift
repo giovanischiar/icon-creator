@@ -6,14 +6,20 @@
 //
 
 struct Path: BodylessTag {
-    var data: PathDatable = PathData(commands: [])
-    var strokeWidth: Double = 0.0  {
-        didSet { data.move(x: strokeWidth/2, y: strokeWidth/2) }
+    var scaleFactor = 1.0
+    var parentCoordinates = (0.0, 0.0) {
+        didSet {
+            data.move(x: parentCoordinates.0, y: parentCoordinates.1)
+        }
     }
+    var parentDimension = Dimension(width: 0.0, height: 0.0)
+    var data: PathDatable = PathData(commands: [])
+    var strokeWidth: Double = 0.0
+    
+    var isCentered = false
     var strokeColor: String? = nil
     var fill: String? = nil
     var fillOpacity: Double? = nil
-    var parentDimension: Dimension? = nil
     
     func name(xmlType: XMLType) -> String { xmlType.path }
     
@@ -51,7 +57,7 @@ extension Path {
         return path
     }
     
-    func fill(with color: String) -> Path {
+    func fill(color: String) -> Path {
         var path = self
         path.fill = color
         return path
@@ -64,10 +70,24 @@ extension Path {
     }
     
     func center() -> Path {
+        if (self.isCentered) { return self }
         var newData = data
-        newData.centralize()
+        newData.centralize(parentDimension: parentDimension)
         var path = self
         path.data = newData
+        path.isCentered = true
+        return path
+    }
+    
+    func parentDimension(_ value: Dimension) -> Path {
+        var path = self
+        path.parentDimension = value
+        return path
+    }
+    
+    func parentCoordinates(_ value: (Double, Double)) -> Path {
+        var path = self
+        path.parentCoordinates = value
         return path
     }
 }
