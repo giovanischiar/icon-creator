@@ -12,7 +12,7 @@ struct AndroidIconsCreator {
     private var iconFilesCreator: AndroidIconFilesCreator {
         AndroidIconFilesCreator(
             background: iconBackground.background,
-            foreground: iconForeground.foreground
+            iconForeground: iconForeground
         )
     }
 
