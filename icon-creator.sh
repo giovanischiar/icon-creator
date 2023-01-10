@@ -16,6 +16,6 @@ echo "$(                          \
       iOS/*/*.swift               \
       AppIcon.swift               \
       Main.swift                  \
-})" > build/IconCreator.swift
+)" > build/IconCreator.swift
 
 env -i swift build/IconCreator.swift $1 $2
