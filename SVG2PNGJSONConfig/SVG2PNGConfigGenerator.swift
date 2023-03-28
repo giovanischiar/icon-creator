@@ -32,6 +32,6 @@ struct SVG2PNGConfigGenerator {
     private func findIconFolders(folderName: String) -> [String] {
         let enumerator = FileManager.default.enumerator(atPath: MainTraits.shared.resDirectory)
         let filePaths = enumerator?.allObjects as! [String]
-        return filePaths.filter{$0.contains(folderName) && !$0.contains("/") && !$0.contains("-anydpi-v26")}
+        return filePaths.filter{$0.contains(folderName) && !$0.contains("/") && !$0.contains("-anydpi")}
     }
 }
