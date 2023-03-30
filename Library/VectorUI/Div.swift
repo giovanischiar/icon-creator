@@ -69,13 +69,109 @@ extension Div {
         div.content = content.parentCoordinates((x, y))
         return div
     }
+
+    func northEastRadius(rx: Double) -> Div {
+        var div = self
+        let saveX = div.rectPathData.x
+        let saveY = div.rectPathData.y
+        let saveWidth = div.rectPathData.width
+        let saveHeight = div.rectPathData.height
+
+        let saveSERX = div.rectPathData.serx
+        let saveSWRX = div.rectPathData.swrx
+        let saveNWRX = div.rectPathData.nwrx
+
+        div.rectPathData = RectPathData(
+            x: saveX, 
+            y: saveY, 
+            width: saveWidth, 
+            height: saveHeight,
+            nerx: rx, 
+            serx: saveSERX, 
+            swrx: saveSWRX, 
+            nwrx: saveNWRX
+        )
+        return div
+    }
+
+    func southEastRadius(rx: Double) -> Div {
+        var div = self
+        let saveX = div.rectPathData.x
+        let saveY = div.rectPathData.y
+        let saveWidth = div.rectPathData.width
+        let saveHeight = div.rectPathData.height
+
+        let saveNERX = div.rectPathData.nerx
+        let saveSWRX = div.rectPathData.swrx
+        let saveNWRX = div.rectPathData.nwrx
+
+        div.rectPathData = RectPathData(
+            x: saveX, 
+            y: saveY, 
+            width: saveWidth, 
+            height: saveHeight,
+            nerx: saveNERX, 
+            serx: rx, 
+            swrx: saveSWRX, 
+            nwrx: saveNWRX
+        )
+        return div
+    }
+
+    func southWestRadius(rx: Double) -> Div {
+        var div = self
+        let saveX = div.rectPathData.x
+        let saveY = div.rectPathData.y
+        let saveWidth = div.rectPathData.width
+        let saveHeight = div.rectPathData.height
+
+        let saveNERX = div.rectPathData.nerx
+        let saveSERX = div.rectPathData.serx
+        let saveNWRX = div.rectPathData.nwrx
+
+        div.rectPathData = RectPathData(
+            x: saveX, 
+            y: saveY, 
+            width: saveWidth, 
+            height: saveHeight,
+            nerx: saveNERX, 
+            serx: saveSERX, 
+            swrx: rx, 
+            nwrx: saveNWRX
+        )
+        return div
+    }
+
+    func northWestRadius(rx: Double) -> Div {
+        var div = self
+        let saveX = div.rectPathData.x
+        let saveY = div.rectPathData.y
+        let saveWidth = div.rectPathData.width
+        let saveHeight = div.rectPathData.height
+
+        let saveNERX = div.rectPathData.nerx
+        let saveSERX = div.rectPathData.serx
+        let saveSWRX = div.rectPathData.swrx
+
+        div.rectPathData = RectPathData(
+            x: saveX, 
+            y: saveY, 
+            width: saveWidth, 
+            height: saveHeight,
+            nerx: saveNERX, 
+            serx: saveSERX, 
+            swrx: saveSWRX, 
+            nwrx: rx
+        )
+        return div
+    }
     
     func dimension(width: Double, height: Double) -> Div {
         var div = self
-        let dimension = Dimension(width: width, height: height)
-        div.rectPathData = div.rectPathData.dimension(width: width, height: width)
-        div.content = content.parentDimension(dimension)
-        div.path = div.path.parentDimension(dimension)
+        let saveX = div.rectPathData.x
+        let saveY = div.rectPathData.y
+        div.rectPathData = RectPathData(x: saveX, y: saveY, width: width, height: height)
+        div.content = content.parentCoordinates((saveX, saveY))
         return div
     }
     

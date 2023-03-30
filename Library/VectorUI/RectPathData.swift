@@ -11,22 +11,43 @@ struct RectPathData: PathDatable {
     var y: Double
     var width: Double
     var height: Double
-    var rx: Double
+    var nerx: Double
+    var serx: Double
+    var swrx: Double
+    var nwrx: Double
     
-    init (_ value: RectPathData) { self.init(x: value.x, y: value.y, width: value.width, height: value.height, rx: value.rx)}
+    init (_ value: RectPathData) { 
+        self.init(
+            x: value.x, 
+            y: value.y, 
+            width: value.width, 
+            height: value.height, 
+            nerx: value.nerx,
+            serx: value.serx,
+            swrx: value.swrx,
+            nwrx: value.nwrx
+        )
+    }
 
     init (x: Double = 0, y: Double = 0, width: Double, height: Double, rx: Double = 0) {
+        self.init(x: x, y: y, width: width, height: height, nerx: rx, serx: rx, swrx: rx, nwrx: rx)
+    }
+
+    init (x: Double = 0, y: Double = 0, width: Double, height: Double, nerx: Double, serx: Double, swrx: Double, nwrx: Double) {
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.rx = rx
-        let archNortheast = rx != 0 ? " a \(rx) \(rx) 0 0 1 \(rx) \(rx)" : ""
-        let archSoutheast = rx != 0 ? " a \(rx) \(rx) 0 0 1 -\(rx) \(rx)" : ""
-        let archSouthwest = rx != 0 ? " a \(rx) \(rx) 0 0 1 -\(rx) -\(rx)" : ""
-        let archNorthwest = rx != 0 ? " a \(rx) \(rx) 0 0 1 \(rx) -\(rx)" : ""
+        self.nerx = nerx
+        self.serx = serx
+        self.swrx = swrx
+        self.nwrx = nwrx
+        let archNortheast = nerx != 0 ? " a \(nerx) \(nerx) 0 0 1 \(nerx) \(nerx)" : ""
+        let archSoutheast = serx != 0 ? " a \(serx) \(serx) 0 0 1 -\(serx) \(serx)" : ""
+        let archSouthwest = swrx != 0 ? " a \(swrx) \(swrx) 0 0 1 -\(swrx) -\(swrx)" : ""
+        let archNorthwest = nwrx != 0 ? " a \(nwrx) \(nwrx) 0 0 1 \(nwrx) -\(nwrx)" : ""
         
-        commands = "M \(x + rx) \(y) h \(width - rx * 2)\(archNortheast) v \(height - rx * 2)\(archSoutheast) h -\(width - rx * 2)\(archSouthwest) v -\(height - rx * 2)\(archNorthwest) Z".commands
+        commands = "M \(x + nwrx) \(y) h \(width - (nwrx + nerx))\(archNortheast) v \(height - (nerx + serx))\(archSoutheast) h -\(width - (serx + swrx))\(archSouthwest) v -\(height - (swrx + nwrx))\(archNorthwest) Z".commands
     }
     
     mutating func scale(factor: Double) {
@@ -40,7 +61,10 @@ struct RectPathData: PathDatable {
     
     func radius(_ value: Double) -> RectPathData {
         var pathData = self
-        pathData.rx = value
+        pathData.nerx = value
+        pathData.serx = value
+        pathData.swrx = value
+        pathData.nwrx = value
         return RectPathData(pathData)
     }
 }
