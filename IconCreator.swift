@@ -19,7 +19,11 @@ struct IconCreator {
             return
         }
 
-        await create(platform: args[1].platform)
+        if (args.count > 3 && args[3] == "scaled") {
+            await createScaled(platform: args[1].platform)
+        } else {
+            await create(platform: args[1].platform)
+        }
     }
 
     private func create(platform: Platform) async {
@@ -31,6 +35,19 @@ struct IconCreator {
         shell("mkdir -p \(MainTraits.shared.outputFolder)")
         switch(platform) {
             case .android: androidIconsCreator.createAllIcons()
+            case .iOS: iosIconsCreator.createAllIcons()
+        }
+    }
+
+    private func createScaled(platform: Platform) async {
+        Traits.shared.theme = await ThemeFetcher(platform: platform).fetch()
+        let iconBackground = IconBackground()
+        let iconForeground = IconForeground()
+        let androidIconsCreator = AndroidIconsCreator(iconBackground: iconBackground, iconForeground: iconForeground)
+        var iosIconsCreator = iOSIconsCreator(iconBackground: iconBackground, iconForeground: iconForeground)
+        shell("mkdir -p \(MainTraits.shared.outputFolder)")
+        switch(platform) {
+            case .android: androidIconsCreator.createAllIconsScaled()
             case .iOS: iosIconsCreator.createAllIcons()
         }
     }

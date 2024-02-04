@@ -27,4 +27,9 @@ struct AndroidIconsCreator {
         iconFilesCreator.create()
         legacyIconsCreator.createAllIconFiles()
     }
+
+    func createAllIconsScaled() {
+        iconFilesCreator.createScaled()
+        legacyIconsCreator.createAllIconFiles()
+    }
 }

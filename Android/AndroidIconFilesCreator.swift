@@ -27,8 +27,22 @@ struct AndroidIconFilesCreator {
 		)
 	}
 
+	private var foregroundFileCreatorScaled: FileCreator {
+		FileCreator(
+			content: iconForeground.scaled(factor: 0.62).center().vectordrawable, 
+			directory: "\(MainTraits.shared.drawableDirectory)-v24",
+			name: "\(MainTraits.shared.androidIconName)_foreground",
+			ext: "xml"
+		)
+	}
+
 	func create() {
 		backgroundFileCreator.create()
 		foregroundFileCreator.create()
+	}
+
+	func createScaled() {
+		backgroundFileCreator.create()
+		foregroundFileCreatorScaled.create()
 	}
 }
