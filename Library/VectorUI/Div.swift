@@ -175,6 +175,15 @@ extension Div {
         return div
     }
     
+    func dimensionAlt(width: Double, height: Double) -> Div {
+        var div = self
+        let dimension = Dimension(width: width, height: height)
+        div.rectPathData = div.rectPathData.dimension(width: width, height: width)
+        div.content = content.parentDimension(dimension)
+        div.path = div.path.parentDimension(dimension)
+        return div
+    }
+    
     func stroke(width: Double) -> Div {
         var div = self
         div.path = div.path.stroke(width: width)
