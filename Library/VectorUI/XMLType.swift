@@ -5,9 +5,19 @@
 //  Created by Giovani Schiar on 05/12/22.
 //
 
-enum XMLType { case svg; case vectordrawable }
+/// The representation of supported XML types.
+enum XMLType {
+    /// Scalable Vector Graphics (SVG). Typically used to generate various sizes on iOS.
+    case svg
+    
+    /// Vector Drawable format supported by Android.
+    case vectordrawable
+}
 
 extension XMLType {
+    /// Generates a dictionary containing the view box parameters.
+    /// - Parameter values: An optional array of doubles representing the view box values.
+    /// - Returns: A dictionary containing the view box parameters (`["viewBox": String]`).
     func viewBox(values: [Double]?) -> [String: Any] {
         switch(self) {
             case .svg:
@@ -32,6 +42,7 @@ extension XMLType {
 
 
 extension XMLType {
+    /// The namespace URI according to the type.
     var namespace: String {
         switch(self) {
             case .svg: return "http://www.w3.org/2000/svg"
@@ -41,12 +52,14 @@ extension XMLType {
 }
 
 extension XMLType {
+    /// The path tag acoording with the type.
     var path: String {
         switch(self) {
             case .svg, .vectordrawable: return "path"
         }
     }
     
+    /// The tag name for the vector element according to the type.
     var vector: String {
         switch(self) {
             case .svg: return "svg"
@@ -54,6 +67,7 @@ extension XMLType {
         }
     }
     
+    /// The attribute name for the xmlns namespace declaration according to the type.
     var xmlns: String {
         switch(self) {
             case .svg: return "xmlns"
@@ -61,6 +75,7 @@ extension XMLType {
         }
     }
     
+    /// The attribute name for the path data geometry according to the type.
     var d: String {
         switch(self) {
             case .svg: return "d"
@@ -68,6 +83,7 @@ extension XMLType {
         }
     }
     
+    /// The attribute name for the stroke color according to the type.
     var strokeColor: String {
         switch(self) {
             case .svg: return "stroke"
@@ -75,6 +91,7 @@ extension XMLType {
         }
     }
     
+    /// The attribute name for the stroke width according to the type.
     var strokeWidth: String {
         switch(self) {
             case .svg: return "stroke-width"
@@ -82,6 +99,7 @@ extension XMLType {
         }
     }
     
+    /// The attribute name for the fill color according to the type.
     var fill: String {
         switch(self) {
             case .svg: return "fill"
@@ -89,6 +107,7 @@ extension XMLType {
         }
     }
     
+    /// The attribute name for the fill opacity according to the type.
     var fillOpacity: String {
         switch(self) {
             case .svg: return "fill-opacity"
@@ -96,6 +115,7 @@ extension XMLType {
         }
     }
     
+    /// The attribute name for the width according to the type.
     var width: String {
         switch(self) {
             case .svg: return "width"
@@ -103,6 +123,7 @@ extension XMLType {
         }
     }
     
+    /// The attribute name for the height according to the type.
     var height: String {
         switch(self) {
             case .svg: return "height"

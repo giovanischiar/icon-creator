@@ -5,10 +5,15 @@
 //  Created by Giovani Schiar on 14/12/22.
 //
 
+/// Creates app icons for iOS.
 struct iOSIconsCreator {
-    let background: Background
-    let foreground: Foreground
-
+    private let background: Background
+    private let foreground: Foreground
+    
+    /// Initializes the creator with the background and foreground elements for the icon.
+    /// - Parameters:
+    ///   - background: The background of the icon.
+    ///   - foreground: The foreground of the icon.
     init(iconBackground: IconBackground, iconForeground: IconForeground) {
         self.background = iconBackground.background
         self.foreground = iconForeground.foreground
@@ -61,6 +66,7 @@ struct iOSIconsCreator {
         }
     }
 
+    /// Creates all the app icons with their different scales.
     mutating func createAllIcons() {
         shell("find \(MainTraits.shared.outputFolder) -name \"*.svg\" -type f -delete")
         appIconFileCreator.create()

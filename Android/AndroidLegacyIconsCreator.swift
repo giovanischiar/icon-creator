@@ -5,9 +5,19 @@
 //  Created by Giovani Schiar on 13/12/22.
 //
 
+/// Creates legacy Android icon files (potentially for API levels below a certain threshold).
 struct AndroidLegacyIconsCreator {
-	let background: IconBackground
-	let foreground: IconForeground 
+	private let background: IconBackground
+	private let foreground: IconForeground
+    
+    /// Initializes the creator with the background and foreground elements for the icon.
+    /// - Parameters:
+    ///   - background: The background of the icon.
+    ///   - foreground: The foreground of the icon.
+    init(background: IconBackground, foreground: IconForeground) {
+        self.background = background
+        self.foreground = foreground
+    }
 	
 	private var squircleAppIconFileCreator: FileCreator {
 		FileCreator(
@@ -45,6 +55,7 @@ struct AndroidLegacyIconsCreator {
 		)
 	}
 
+    /// Creates squircle and round legacy icon SVG files, deletes existing PNG and WebP files, and then generates PNG versions from the SVGs.
 	func createAllIconFiles() {
 		squircleAppIconFileCreator.create()
 		roundAppIconFileCreator.create()

@@ -5,12 +5,16 @@
 //  Created by Giovani Schiar on 05/12/22.
 //
 
+/// The representation of a single command within the `d` attribute of an SVG path.
 struct PathDataCommand {
+    /// The character representing the SVG path command type (e.g., "M", "L", "C").
     let command: Character
+    /// The list of parameters associated with the command. The number and meaning of parameters vary depending on the specific command type.
     var parameters: [Double]
 }
 
 extension PathDataCommand {
+    /// The coordinates extracted from the parameters array based on the command type.
     var coordinates: [(Double, Double)] {
         switch(command) {
             case "a"..."z":
@@ -34,6 +38,11 @@ extension PathDataCommand {
 }
 
 extension PathDataCommand: Scalable, Movable {
+    /// Scales the command params of the PathDataCommand object by a specified factor.
+    /// - Parameter factor: A Double value representing the scaling factor.
+    ///   - A value of 1.0 maintains the current size.
+    ///   - Values greater than 1.0 scale the path up.
+    ///   - Values less than 1.0 scale the path down.
     mutating func scale(factor: Double) {
         switch (command) {
             case "A", "a":
@@ -47,6 +56,15 @@ extension PathDataCommand: Scalable, Movable {
         }
     }
     
+    /// Moves the command params of the PathDataCommand object by a specified offset.
+    /// - Parameters:
+    ///   - x: A Double value representing the offset in the x-direction.
+    ///     - Positive values move the path to the right.
+    ///     - Negative values move it to the left.
+    ///   - y: A Double value representing the offset in the y-direction.
+    ///     - Positive values move the path down.
+    ///     - Negative values move it up.
+    /// - Returns: A new Path object with the moved path data.
     mutating func move(x: Double, y: Double) {
         switch (command) {
             case "a"..."z":
@@ -62,6 +80,15 @@ extension PathDataCommand: Scalable, Movable {
         }
     }
     
+    /// Translates the command params of the PathDataCommand object by a specified offset.
+    /// - Parameters:
+    ///   - x: A Double value representing the offset in the x-direction.
+    ///     - Positive values move the path to the right.
+    ///     - Negative values move it to the left.
+    ///   - y: A Double value representing the offset in the y-direction.
+    ///     - Positive values move the path down.
+    ///     - Negative values move it up.
+    /// - Returns: A new Path object with the moved path data.
     mutating func translate(x: Double, y: Double) {
         switch (command) {
             case "a"..."z":
@@ -79,12 +106,18 @@ extension PathDataCommand: Scalable, Movable {
 }
 
 extension PathDataCommand: CustomStringConvertible {
+    /// The string representation of the command, including the command letter and its parameters.
     var description: String {
         return parameters.isEmpty ? "\(command)" : "\(command) \(parameters.stringArray.joined(separator: " "))"
     }
 }
 
 extension [PathDataCommand]: Scalable, Movable {
+    /// Scales the path data of the PathDataCommand object by a specified factor.
+    /// - Parameter factor: A Double value representing the scaling factor.
+    ///   - A value of 1.0 maintains the current size.
+    ///   - Values greater than 1.0 scale the path up.
+    ///   - Values less than 1.0 scale the path down.
     mutating func scale(factor: Double) {
         var i = 0
         while (i < count) {
@@ -95,6 +128,15 @@ extension [PathDataCommand]: Scalable, Movable {
         }
     }
     
+    /// Moves the path data of the PathDataCommand object by a specified offset.
+    /// - Parameters:
+    ///   - x: A Double value representing the offset in the x-direction.
+    ///     - Positive values move the path to the right.
+    ///     - Negative values move it to the left.
+    ///   - y: A Double value representing the offset in the y-direction.
+    ///     - Positive values move the path down.
+    ///     - Negative values move it up.
+    /// - Returns: A new Path object with the moved path data.
     mutating func move(x: Double, y: Double) {
         var i = 0
         while (i < count) {
@@ -105,6 +147,15 @@ extension [PathDataCommand]: Scalable, Movable {
         }
     }
     
+    /// Translates the command params of the PathDataCommand object by a specified offset.
+    /// - Parameters:
+    ///   - x: A Double value representing the offset in the x-direction.
+    ///     - Positive values move the path to the right.
+    ///     - Negative values move it to the left.
+    ///   - y: A Double value representing the offset in the y-direction.
+    ///     - Positive values move the path down.
+    ///     - Negative values move it up.
+    /// - Returns: A new Path object with the moved path data.
     mutating func translate(x: Double, y: Double) {
         var i = 0
         while (i < count) {
@@ -117,6 +168,7 @@ extension [PathDataCommand]: Scalable, Movable {
 }
 
 extension [PathDataCommand] {
+    /// An array containing all the coordinates extracted from the PathDataCommand objects in the array.
     var coordinates: [(Double, Double)] {
         map { $0.coordinates }.reduce([], +)
     }

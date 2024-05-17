@@ -5,9 +5,18 @@
 //  Created by Giovani Schiar on 14/12/22.
 //
 
+/// Reads parameters from the user and creates icons based on the specified platform.
 struct IconCreator {
-    var args: [String]
-
+    private var args: [String]
+    
+    
+    /// Initializes the struct with the launch arguments.
+    /// - Parameter args: The arguments passed when executing the code.
+    init(args: [String]) {
+        self.args = args
+    }
+    
+    /// Initializes the application, considers the arguments, and creates the icons.
     func run() async {
         if (args.count < 3) {
             print("usage:")

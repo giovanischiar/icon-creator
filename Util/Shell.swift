@@ -5,6 +5,11 @@
 //  Created by Giovani Schiar on 13/12/22.
 //
 
+import Foundation
+
+/// Executes a shell command and prints the output to the console.
+///
+/// - Parameter command: The shell command to execute as a string.
 func shell(_ command: String) {
     print(command)
     let task = Process()
