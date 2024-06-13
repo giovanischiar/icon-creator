@@ -13,4 +13,4 @@ class Main {
     }
 }
 
-// await Main.main(args: CommandLine.arguments)
+await Main.main(args: CommandLine.arguments)
