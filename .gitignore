@@ -1,3 +1,5 @@
 output/
 build/
 .build/
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+.swiftpm/xcode/xcurserdata/

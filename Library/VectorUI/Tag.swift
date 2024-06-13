@@ -206,6 +206,36 @@ extension Tag {
         tagArray[0] = tagColorFilledChanged
         return tagArray
     }
+
+    /// Changes the stroke of the border (stroke) line join around this tag.
+    /// - Parameter join: A valid hex color string representing the new stroke color.
+    /// - Returns: A new list of tags containing this tag with the specified stroke line join applied. The original tags within the body remain unmodified (similar to `fill`).
+    func strokeLine(join: String) -> [any Tag] {
+        var tagArray = self.body
+        var tagColorStrokeLineJoinChanged: any Tag
+        if var path = self as? Path {
+            path = path.strokeLine(join: join)
+            return [path]
+        }
+        tagColorStrokeLineJoinChanged = tagArray[0].strokeLine(join: join)[0]
+        tagArray[0] = tagColorStrokeLineJoinChanged
+        return tagArray
+    }
+
+    /// Changes the stroke of the border (stroke) line cap around this tag.
+    /// - Parameter cap: A valid hex color string representing the new stroke line cap.
+    /// - Returns: A new list of tags containing this tag with the specified stroke line cap applied. The original tags within the body remain unmodified (similar to `fill`).
+    func strokeLine(cap: String) -> [any Tag] {
+        var tagArray = self.body
+        var tagColorStrokeLineCapChanged: any Tag
+        if var path = self as? Path {
+            path = path.strokeLine(cap: cap)
+            return [path]
+        }
+        tagColorStrokeLineCapChanged = tagArray[0].strokeLine(cap: cap)[0]
+        tagArray[0] = tagColorStrokeLineCapChanged
+        return tagArray
+    }
 }
 
 extension [Tag] {

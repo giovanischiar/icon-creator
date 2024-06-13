@@ -130,4 +130,20 @@ extension XMLType {
             case .vectordrawable: return "android:height"
         }
     }
+
+    /// The attribute name for the stroke line join according to the type.
+    var strokeLineJoin: String {
+        switch(self) {
+            case .svg: return "stroke-linejoin"
+            case .vectordrawable: return "android:strokeLineJoin"
+        }
+    }
+
+    /// The attribute name for the stroke line cap according to the type.
+    var strokeLineCap: String {
+        switch(self) {
+            case .svg: return "stroke-linecap"
+            case .vectordrawable: return "android:strokeLineCap"
+        }
+    }
 }

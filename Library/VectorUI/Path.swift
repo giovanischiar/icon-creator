@@ -30,6 +30,8 @@ struct Path: BodylessTag {
     private var strokeColor: String? = nil
     private var fill: String? = nil
     private var fillOpacity: Double? = nil
+    private var strokeLineJoin: String? = nil
+    private var strokeLineCap: String? = nil
     
     /// The name of the component based on the XML type.
     /// - Parameter xmlType: The XML type (either .svg or .vectorDrawable).
@@ -45,6 +47,8 @@ struct Path: BodylessTag {
         dict[xmlType.strokeWidth] = strokeWidth
         dict[xmlType.strokeColor] = strokeColor
         dict[xmlType.fill] = fill
+        dict[xmlType.strokeLineJoin] = strokeLineJoin
+        dict[xmlType.strokeLineCap] = strokeLineCap
         if (xmlType == .svg) {
             dict[xmlType.fillOpacity] = fillOpacity != nil ? fillOpacity : (fill != nil ? 1 : 0)
         }
@@ -81,7 +85,25 @@ extension Path {
         path.strokeColor = color
         return path
     }
-    
+
+    /// Changes the join of the path line stroke.
+    /// - Parameter join: The new join of the line stroke.
+    /// - Returns: A new `Path` object with the updated stroke line join.
+    func strokeLine(join: String) -> Path {
+        var path = self
+        path.strokeLineJoin = join
+        return path
+    }
+
+    /// Changes the cap of the path line stroke.
+    /// - Parameter cap: The new cap of the line stroke.
+    /// - Returns: A new `Path` object with the updated stroke line cap.
+    func strokeLine(cap: String) -> Path {
+        var path = self
+        path.strokeLineCap = cap
+        return path
+    }
+
     /// Changes the fill color of the path.
     /// - Parameter color: The new color of the fill in a format specific to the target XML type (CSS color format for SVG, hex color string for Vector Drawable).
     /// - Returns: A new `Path` object with the updated fill color.
