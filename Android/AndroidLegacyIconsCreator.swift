@@ -61,8 +61,8 @@ struct AndroidLegacyIconsCreator {
 		roundAppIconFileCreator.create()
 		svg2PNGConfigFileCreator.create()
 
-		shell("find \(MainTraits.shared.resDirectory) -name \"*.png\" -type f -delete")
-		shell("find \(MainTraits.shared.resDirectory) -name \"*.webp\" -type f -delete")
+		shell("find \(MainTraits.shared.resDirectory) -name \"ic_launcher.png\" -type f -delete")
+		shell("find \(MainTraits.shared.resDirectory) -name \"ic_launcher.webp\" -type f -delete")
 
 		shell("\(MainTraits.shared.svg2PNG) -f \(squircleAppIconFileCreator.filePath) -c \(svg2PNGConfigFileCreator.filePath)")
 		shell("\(MainTraits.shared.svg2PNG) -f \(roundAppIconFileCreator.filePath) -c \(svg2PNGConfigFileCreator.filePath)")
